@@ -14,7 +14,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Deep, romantic animated gradient background */
             background: linear-gradient(-45deg, #2b1055, #7597de, #eb7c96, #2b1055);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -29,7 +28,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Glassmorphism Card */
         .card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(16px);
@@ -50,7 +48,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        /* Typography */
         #message-container {
             min-height: 120px;
             display: flex;
@@ -68,7 +65,6 @@
             margin: 0;
         }
 
-        /* Heart Icon */
         .heart-icon {
             font-size: 50px;
             margin-bottom: 20px;
@@ -83,7 +79,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Interactive Button */
         button {
             background: linear-gradient(45deg, #ff6b81, #ff4757);
             color: white;
@@ -106,7 +101,6 @@
             transform: scale(0.95);
         }
 
-        /* Floating particles */
         .particle {
             position: absolute;
             background: rgba(255, 255, 255, 0.6);
@@ -130,17 +124,24 @@
         <div id="message-container">
             <h2 id="text-display"></h2>
         </div>
-        <button id="next-btn" onclick="nextMessage()">শুরু করি</button>
+        <button id="next-btn" onclick="nextMessage()">I love you</button>
     </div>
 
     <script>
-        // The beautiful messages broken down into steps
         const messages = [
             "শুভ জন্মদিন, আমার জীবনের সবচেয়ে সুন্দর মানুষটিকে! 💖",
-            "তুমি আমার জীবনের সেই আলো, যা প্রতিদিন আমাকে বাঁচার নতুন কারণ দেখায়। ✨",
-            "তোমার হাসি আমার পৃথিবীর সবচেয়ে দামি জিনিস। 😊",
+            "সারাদিনের শত ব্যস্ততার শেষে, তুমিই আমার সবচেয়ে শান্তির জায়গা। ✨",
+            "আমাদের সুন্দর একটা ভবিষ্যৎ গড়ার যত স্বপ্ন, তার সবটা জুড়েই আছো তুমি। 💖",
             "কথা দিচ্ছি, জীবনের প্রতিটি পদক্ষেপে তোমার হাতটা শক্ত করে ধরে রাখবো। 🤝",
             "আমার জীবনে আসার জন্য ধন্যবাদ। অনেক অনেক ভালোবাসা তোমার জন্য! 🎉"
+        ];
+
+        // The button will change to these special texts one by one
+        const buttonTexts = [
+            "তারপর...",            // "And then..."
+            "আমার পৃথিবী",         // "My world"
+            "সবসময় একসাথে",        // "Always together"
+            "আমার সবকিছু 💖"       // "My everything"
         ];
 
         let currentIndex = -1;
@@ -149,51 +150,51 @@
         const topIcon = document.getElementById('top-icon');
         let isTyping = false;
 
-        // Typewriter effect logic
         function typeWriter(text, i, cb) {
             if (i < text.length) {
                 textDisplay.innerHTML = text.substring(0, i + 1);
                 setTimeout(function() {
                     typeWriter(text, i + 1, cb)
-                }, 50); // Speed of typing (lower is faster)
+                }, 50); 
             } else if (cb) {
                 isTyping = false;
                 cb();
             }
         }
 
-        // Logic to move to the next message
         function nextMessage() {
-            if (isTyping) return; // Prevent clicking while text is still typing
+            if (isTyping) return; 
 
             currentIndex++;
             
             if (currentIndex === 0) {
-                nextBtn.innerText = "পরবর্তী"; // Change button text after start
                 topIcon.innerText = "💖";
             }
 
             if (currentIndex < messages.length) {
                 isTyping = true;
-                textDisplay.innerHTML = ""; // Clear current text
+                textDisplay.innerHTML = ""; 
+                
+                // Update the button text to the special phrases
+                if (currentIndex < messages.length - 1) {
+                    nextBtn.innerText = buttonTexts[currentIndex];
+                }
+
                 typeWriter(messages[currentIndex], 0, function() {
-                    // Check if it's the last message
                     if (currentIndex === messages.length - 1) {
-                        nextBtn.style.display = 'none'; // Hide button at the end
+                        nextBtn.style.display = 'none'; 
                         triggerHeartBurst();
                     }
                 });
             }
         }
 
-        // Background glowing particles
         function createParticles() {
             const numParticles = 40;
             for (let i = 0; i < numParticles; i++) {
                 let particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // Randomize size, position, and speed
                 let size = Math.random() * 5 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
@@ -205,7 +206,6 @@
             }
         }
 
-        // A final burst of floating hearts when she reaches the last message
         function triggerHeartBurst() {
             topIcon.innerText = "❤️‍🔥";
             setInterval(() => {
@@ -225,7 +225,6 @@
             }, 150);
         }
 
-        // Initialize particles on load
         createParticles();
     </script>
 </body>
