@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শুভ জন্মদিন!</title>
+    <style>
+        /* Base styles and background */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Kalpurush', 'SolaimanLipi', Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Glassmorphism card effect */
+        .card {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            max-width: 400px;
+            width: 85%;
+            z-index: 10;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Fade in animation for the card */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography */
+        h1 {
+            color: #d81b60;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        p {
+            color: #333333;
+            font-size: 1.2em;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Beating heart animation */
+        .main-heart {
+            font-size: 60px;
+            animation: heartbeat 1.2s infinite;
+            display: inline-block;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 10px rgba(216, 27, 96, 0.4));
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Background floating hearts */
+        .floating-heart {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(216, 27, 96, 0.6);
+            animation: floatUp linear infinite;
+            z-index: 1;
+            pointer-events: none; /* Allows clicking through the hearts */
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="main-heart">💖</div>
+        <h1>শুভ জন্মদিন, আমার ভালোবাসা!</h1>
+        <p>তুমি আমার জীবনের সবচেয়ে সুন্দর উপহার। তোমার এই বিশেষ দিনটি আনন্দে ভরে উঠুক, এবং আমাদের আগামী দিনগুলো হোক আরও সুন্দর। অনেক ভালোবাসি তোমায়!</p>
+    </div>
+
+    <script>
+        // JavaScript to generate continuous floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤';
+            
+            // Randomize position, size, and animation duration
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's'; // Between 3s and 6s
+            
+            // Randomize slightly different colors for variety
+            const colors = ['#ff4d6d', '#ff758f', '#c9184a', '#ffb3c6'];
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+            document.body.appendChild(heart);
+
+            // Remove the heart from the DOM after animation completes to prevent lag
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Create a new heart every 400 milliseconds
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
+
