@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>শুভ জন্মদিন!</title>
     <style>
-        /* Base styles and background */
+        @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600&display=swap');
+
         body {
             margin: 0;
             padding: 0;
@@ -13,119 +14,219 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            font-family: 'Kalpurush', 'SolaimanLipi', Arial, sans-serif;
+            /* Deep, romantic animated gradient background */
+            background: linear-gradient(-45deg, #2b1055, #7597de, #eb7c96, #2b1055);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Anek Bangla', 'Kalpurush', sans-serif;
             overflow: hidden;
             position: relative;
         }
 
-        /* Glassmorphism card effect */
-        .card {
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            max-width: 400px;
-            width: 85%;
-            z-index: 10;
-            animation: fadeIn 2s ease-in-out;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Fade in animation for the card */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* Glassmorphism Card */
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 450px;
+            width: 85%;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         /* Typography */
-        h1 {
-            color: #d81b60;
-            font-size: 2.2em;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        #message-container {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
         }
 
-        p {
-            color: #333333;
-            font-size: 1.2em;
-            line-height: 1.6;
-            font-weight: 500;
+        h2 {
+            color: #ffffff;
+            font-size: 1.8em;
+            line-height: 1.5;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin: 0;
         }
 
-        /* Beating heart animation */
-        .main-heart {
-            font-size: 60px;
-            animation: heartbeat 1.2s infinite;
+        /* Heart Icon */
+        .heart-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
             display: inline-block;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px rgba(216, 27, 96, 0.4));
+            animation: pulse 1.5s infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 107, 129, 0.8));
         }
 
-        @keyframes heartbeat {
+        @keyframes pulse {
             0% { transform: scale(1); }
-            15% { transform: scale(1.3); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
+            50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
 
-        /* Background floating hearts */
-        .floating-heart {
+        /* Interactive Button */
+        button {
+            background: linear-gradient(45deg, #ff6b81, #ff4757);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2em;
+            font-family: inherit;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(255, 71, 87, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(255, 71, 87, 0.5);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Floating particles */
+        .particle {
             position: absolute;
-            font-size: 24px;
-            color: rgba(216, 27, 96, 0.6);
-            animation: floatUp linear infinite;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
             z-index: 1;
-            pointer-events: none; /* Allows clicking through the hearts */
+            pointer-events: none;
+            animation: floatUp infinite linear;
         }
 
         @keyframes floatUp {
             0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="main-heart">💖</div>
-        <h1>শুভ জন্মদিন, আমার ভালোবাসা!</h1>
-        <p>তুমি আমার জীবনের সবচেয়ে সুন্দর উপহার। তোমার এই বিশেষ দিনটি আনন্দে ভরে উঠুক, এবং আমাদের আগামী দিনগুলো হোক আরও সুন্দর। অনেক ভালোবাসি তোমায়!</p>
+        <div class="heart-icon" id="top-icon">✨</div>
+        <div id="message-container">
+            <h2 id="text-display"></h2>
+        </div>
+        <button id="next-btn" onclick="nextMessage()">শুরু করি</button>
     </div>
 
     <script>
-        // JavaScript to generate continuous floating hearts
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            heart.innerHTML = '❤';
-            
-            // Randomize position, size, and animation duration
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 3 + 's'; // Between 3s and 6s
-            
-            // Randomize slightly different colors for variety
-            const colors = ['#ff4d6d', '#ff758f', '#c9184a', '#ffb3c6'];
-            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        // The beautiful messages broken down into steps
+        const messages = [
+            "শুভ জন্মদিন, আমার জীবনের সবচেয়ে সুন্দর মানুষটিকে! 💖",
+            "তুমি আমার জীবনের সেই আলো, যা প্রতিদিন আমাকে বাঁচার নতুন কারণ দেখায়। ✨",
+            "তোমার হাসি আমার পৃথিবীর সবচেয়ে দামি জিনিস। 😊",
+            "কথা দিচ্ছি, জীবনের প্রতিটি পদক্ষেপে তোমার হাতটা শক্ত করে ধরে রাখবো। 🤝",
+            "আমার জীবনে আসার জন্য ধন্যবাদ। অনেক অনেক ভালোবাসা তোমার জন্য! 🎉"
+        ];
 
-            document.body.appendChild(heart);
+        let currentIndex = -1;
+        const textDisplay = document.getElementById('text-display');
+        const nextBtn = document.getElementById('next-btn');
+        const topIcon = document.getElementById('top-icon');
+        let isTyping = false;
 
-            // Remove the heart from the DOM after animation completes to prevent lag
-            setTimeout(() => {
-                heart.remove();
-            }, 6000);
+        // Typewriter effect logic
+        function typeWriter(text, i, cb) {
+            if (i < text.length) {
+                textDisplay.innerHTML = text.substring(0, i + 1);
+                setTimeout(function() {
+                    typeWriter(text, i + 1, cb)
+                }, 50); // Speed of typing (lower is faster)
+            } else if (cb) {
+                isTyping = false;
+                cb();
+            }
         }
 
-        // Create a new heart every 400 milliseconds
-        setInterval(createHeart, 400);
+        // Logic to move to the next message
+        function nextMessage() {
+            if (isTyping) return; // Prevent clicking while text is still typing
+
+            currentIndex++;
+            
+            if (currentIndex === 0) {
+                nextBtn.innerText = "পরবর্তী"; // Change button text after start
+                topIcon.innerText = "💖";
+            }
+
+            if (currentIndex < messages.length) {
+                isTyping = true;
+                textDisplay.innerHTML = ""; // Clear current text
+                typeWriter(messages[currentIndex], 0, function() {
+                    // Check if it's the last message
+                    if (currentIndex === messages.length - 1) {
+                        nextBtn.style.display = 'none'; // Hide button at the end
+                        triggerHeartBurst();
+                    }
+                });
+            }
+        }
+
+        // Background glowing particles
+        function createParticles() {
+            const numParticles = 40;
+            for (let i = 0; i < numParticles; i++) {
+                let particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Randomize size, position, and speed
+                let size = Math.random() * 5 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                document.body.appendChild(particle);
+            }
+        }
+
+        // A final burst of floating hearts when she reaches the last message
+        function triggerHeartBurst() {
+            topIcon.innerText = "❤️‍🔥";
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.style.position = 'absolute';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                heart.style.animation = 'floatUp ' + (Math.random() * 3 + 2) + 's linear';
+                heart.style.zIndex = '1';
+                heart.style.pointerEvents = 'none';
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 150);
+        }
+
+        // Initialize particles on load
+        createParticles();
     </script>
 </body>
 </html>
-
